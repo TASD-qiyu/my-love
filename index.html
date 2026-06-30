@@ -1,0 +1,370 @@
+
+<p>&lt;!DOCTYPE html&gt;</p>
+
+<p>&lt;html lang="zh-CN"&gt;</p>
+
+<p>&lt;head&gt;</p>
+
+<p>&nbsp; &lt;meta charset="UTF-8"&gt;</p>
+
+<p>&nbsp; &lt;meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, viewport-fit=cover"&gt;</p>
+
+<p>&nbsp; &lt;title&gt;₊⁺♡‌₊⁺LOVE₊⁺♡‌₊⁺&lt;/title&gt;</p>
+
+<p>&nbsp; &lt;!-- 外部依赖 --&gt;</p>
+
+<p>&nbsp; &lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</p>
+
+<p>&nbsp; &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"&gt;</p>
+
+<p>&nbsp; &lt;!-- 自定义样式 --&gt;</p>
+
+<p>&nbsp; &lt;link rel="stylesheet" href="style.css"&gt;</p>
+
+<p>&lt;/head&gt;</p>
+
+<p>&lt;body&gt;</p>
+
+<p></p>
+
+<p>&lt;!-- ===== 锁屏 ===== --&gt;</p>
+
+<p>&lt;div class="lockpage" id="lockScreen"&gt;</p>
+
+<p>&nbsp; &lt;div class="lock-bg-layer" id="lockBgLayer"&gt;&lt;/div&gt;</p>
+
+<p>&nbsp; &lt;canvas id="lineCanvas"&gt;&lt;/canvas&gt;</p>
+
+<p>&nbsp; &lt;div class="lock-content"&gt;</p>
+
+<p>&nbsp; &nbsp; &lt;div class="time-big" id="lockTime"&gt;00:00&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &lt;div class="date-normal" id="lockDate"&gt;2026年06月17日 星期三&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &lt;div class="avatar-wrap"&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &lt;div class="single-avatar" id="avatarLeft" onclick="uploadAvatar('avatarLeft')"&gt;&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &lt;div class="heart-line"&gt;&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &lt;div class="single-avatar" id="avatarRight" onclick="uploadAvatar('avatarRight')"&gt;&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &lt;div class="lock-text-display" id="lockTextDisplay"&gt;❤ 心动信号 ❤&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &lt;div class="flex-1"&gt;&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &lt;div class="dots-grid" id="dotsGrid"&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &lt;div class="unlock-dot" data-idx="1"&gt;&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &lt;div class="unlock-dot" data-idx="2"&gt;&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &lt;div class="unlock-dot" data-idx="3"&gt;&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &lt;div class="unlock-dot" data-idx="4"&gt;&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &lt;div class="unlock-dot" data-idx="5"&gt;&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &lt;div class="unlock-dot" data-idx="6"&gt;&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &lt;div class="unlock-dot" data-idx="7"&gt;&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &lt;div class="unlock-dot" data-idx="8"&gt;&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &lt;div class="unlock-dot" data-idx="9"&gt;&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &lt;div class="hint-text"&gt;双击圆点设密码 · 按顺序点击解锁&lt;/div&gt;</p>
+
+<p>&nbsp; &lt;/div&gt;</p>
+
+<p>&lt;/div&gt;</p>
+
+<p></p>
+
+<p>&lt;!-- ===== 主界面 ===== --&gt;</p>
+
+<p>&lt;div class="mainpage" id="mainPage"&gt;</p>
+
+<p>&nbsp; &lt;div class="status-bar"&gt;</p>
+
+<p>&nbsp; &nbsp; &lt;span id="topTime"&gt;00:00&lt;/span&gt;</p>
+
+<p>&nbsp; &nbsp; &lt;div class="icons"&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &lt;i class="fa fa-signal"&gt;&lt;/i&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &lt;i class="fa fa-wifi"&gt;&lt;/i&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &lt;i class="fa fa-battery-full"&gt;&lt;/i&gt;</p>
+
+<p>&nbsp; &nbsp; &lt;/div&gt;</p>
+
+<p>&nbsp; &lt;/div&gt;</p>
+
+<p></p>
+
+<p>&nbsp; &lt;div class="couple-card" id="coupleCard"&gt;</p>
+
+<p>&nbsp; &nbsp; &lt;div class="couple-card-bg" id="coupleCardBg"&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &lt;div class="upload-hint"&gt;点击上传背景&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &lt;div class="couple-card-content"&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &lt;div class="couple-avatars"&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &lt;div class="couple-avatar" id="mainAvatarLeft" onclick="uploadAvatar('avatarLeft')"&gt;&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &lt;span class="couple-heart"&gt;❤&lt;/span&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &lt;div class="couple-avatar" id="mainAvatarRight" onclick="uploadAvatar('avatarRight')"&gt;&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &lt;div class="couple-names"&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &lt;span class="nick-text" id="nick1" onclick="editNick('n1')"&gt;我&lt;/span&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &lt;span class="sep"&gt;·&lt;/span&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &lt;span class="nick-text" id="nick2" onclick="editNick('n2')"&gt;梦角&lt;/span&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &lt;/div&gt;</p>
+
+<p>&nbsp; &lt;/div&gt;</p>
+
+<p></p>
+
+<p>&nbsp; &lt;div class="player"&gt;</p>
+
+<p>&nbsp; &nbsp; &lt;div class="player-cover" id="playerCover" onclick="uploadPlayerCover()"&gt;&lt;i class="fa fa-music"&gt;&lt;/i&gt;&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &lt;div class="player-info"&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &lt;div class="name" id="songNameDisplay" onclick="editSongName()"&gt;心动旋律&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &lt;div class="bar"&gt;&lt;div class="fill"&gt;&lt;/div&gt;&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &lt;div class="player-controls"&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &lt;i class="fa fa-step-backward"&gt;&lt;/i&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &lt;i class="fa fa-play" id="playBtn"&gt;&lt;/i&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &lt;i class="fa fa-step-forward"&gt;&lt;/i&gt;</p>
+
+<p>&nbsp; &nbsp; &lt;/div&gt;</p>
+
+<p>&nbsp; &lt;/div&gt;</p>
+
+<p></p>
+
+<p>&nbsp; &lt;div class="app-grid-wrap"&gt;</p>
+
+<p>&nbsp; &nbsp; &lt;div class="app-grid-container"&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &lt;div class="app-page"&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &lt;div class="app-item" onclick="toast('聊天')"&gt;&lt;div class="icon"&gt;&lt;i class="fa fa-comment-o"&gt;&lt;/i&gt;&lt;/div&gt;&lt;span class="label"&gt;聊天&lt;/span&gt;&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &lt;div class="app-item" onclick="toast('相册')"&gt;&lt;div class="icon"&gt;&lt;i class="fa fa-picture-o"&gt;&lt;/i&gt;&lt;/div&gt;&lt;span class="label"&gt;相册&lt;/span&gt;&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &lt;div class="app-item" onclick="toast('陪伴')"&gt;&lt;div class="icon"&gt;&lt;i class="fa fa-heart-o"&gt;&lt;/i&gt;&lt;/div&gt;&lt;span class="label"&gt;陪伴&lt;/span&gt;&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &lt;div class="app-item" onclick="toast('音乐')"&gt;&lt;div class="icon"&gt;&lt;i class="fa fa-music"&gt;&lt;/i&gt;&lt;/div&gt;&lt;span class="label"&gt;音乐&lt;/span&gt;&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &lt;div class="app-item" onclick="toast('小游戏')"&gt;&lt;div class="icon"&gt;&lt;i class="fa fa-gamepad"&gt;&lt;/i&gt;&lt;/div&gt;&lt;span class="label"&gt;小游戏&lt;/span&gt;&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &lt;div class="app-item special" id="openTool" onclick="showModal('toolModal')"&gt;&lt;div class="icon"&gt;&lt;i class="fa fa-th-large"&gt;&lt;/i&gt;&lt;/div&gt;&lt;span class="label"&gt;工具箱&lt;/span&gt;&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &lt;div class="app-item" onclick="toast('信封')"&gt;&lt;div class="icon"&gt;&lt;i class="fa fa-envelope-o"&gt;&lt;/i&gt;&lt;/div&gt;&lt;span class="label"&gt;信封&lt;/span&gt;&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &lt;div class="app-item" onclick="toast('手账')"&gt;&lt;div class="icon"&gt;&lt;i class="fa fa-book"&gt;&lt;/i&gt;&lt;/div&gt;&lt;span class="label"&gt;手账&lt;/span&gt;&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &lt;div class="app-item" onclick="toast('查岗')"&gt;&lt;div class="icon"&gt;&lt;i class="fa fa-eye"&gt;&lt;/i&gt;&lt;/div&gt;&lt;span class="label"&gt;查岗&lt;/span&gt;&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &lt;div class="app-item" onclick="toast('创作')"&gt;&lt;div class="icon"&gt;&lt;i class="fa fa-pencil"&gt;&lt;/i&gt;&lt;/div&gt;&lt;span class="label"&gt;创作&lt;/span&gt;&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &lt;div class="app-item" onclick="toast('购物')"&gt;&lt;div class="icon"&gt;&lt;i class="fa fa-shopping-bag"&gt;&lt;/i&gt;&lt;/div&gt;&lt;span class="label"&gt;购物&lt;/span&gt;&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &lt;div class="app-item" onclick="toast('备忘录')"&gt;&lt;div class="icon"&gt;&lt;i class="fa fa-sticky-note-o"&gt;&lt;/i&gt;&lt;/div&gt;&lt;span class="label"&gt;备忘录&lt;/span&gt;&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &lt;div class="app-page"&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &lt;div class="app-item" onclick="toast('日历')"&gt;&lt;div class="icon"&gt;&lt;i class="fa fa-calendar"&gt;&lt;/i&gt;&lt;/div&gt;&lt;span class="label"&gt;日历&lt;/span&gt;&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &lt;div class="app-item" onclick="toast('地图')"&gt;&lt;div class="icon"&gt;&lt;i class="fa fa-map-marker"&gt;&lt;/i&gt;&lt;/div&gt;&lt;span class="label"&gt;地图&lt;/span&gt;&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &lt;div class="app-item" onclick="showThemeModal()"&gt;&lt;div class="icon"&gt;&lt;i class="fa fa-paint-brush"&gt;&lt;/i&gt;&lt;/div&gt;&lt;span class="label"&gt;主题&lt;/span&gt;&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &lt;div class="app-item" onclick="toast('共语')"&gt;&lt;div class="icon"&gt;&lt;i class="fa fa-comments-o"&gt;&lt;/i&gt;&lt;/div&gt;&lt;span class="label"&gt;共语&lt;/span&gt;&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &lt;div class="app-item" onclick="toast('抽签')"&gt;&lt;div class="icon"&gt;&lt;i class="fa fa-ticket"&gt;&lt;/i&gt;&lt;/div&gt;&lt;span class="label"&gt;抽签&lt;/span&gt;&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &lt;div class="app-item" onclick="toast('占卜')"&gt;&lt;div class="icon"&gt;&lt;i class="fa fa-star"&gt;&lt;/i&gt;&lt;/div&gt;&lt;span class="label"&gt;占卜&lt;/span&gt;&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &lt;div class="app-item" onclick="toast('掷色子')"&gt;&lt;div class="icon"&gt;&lt;i class="fa fa-diamond"&gt;&lt;/i&gt;&lt;/div&gt;&lt;span class="label"&gt;掷色子&lt;/span&gt;&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &lt;div class="app-item" onclick="toast('吃什么')"&gt;&lt;div class="icon"&gt;&lt;i class="fa fa-cutlery"&gt;&lt;/i&gt;&lt;/div&gt;&lt;span class="label"&gt;吃什么&lt;/span&gt;&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &lt;div class="app-item" onclick="toast('决策')"&gt;&lt;div class="icon"&gt;&lt;i class="fa fa-check-square-o"&gt;&lt;/i&gt;&lt;/div&gt;&lt;span class="label"&gt;决策&lt;/span&gt;&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &lt;div class="app-item" onclick="toast('天气')"&gt;&lt;div class="icon"&gt;&lt;i class="fa fa-cloud"&gt;&lt;/i&gt;&lt;/div&gt;&lt;span class="label"&gt;天气&lt;/span&gt;&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &lt;div class="app-item" onclick="toast('礼物')"&gt;&lt;div class="icon"&gt;&lt;i class="fa fa-gift"&gt;&lt;/i&gt;&lt;/div&gt;&lt;span class="label"&gt;礼物&lt;/span&gt;&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &lt;div class="app-item" onclick="toast('相机')"&gt;&lt;div class="icon"&gt;&lt;i class="fa fa-camera"&gt;&lt;/i&gt;&lt;/div&gt;&lt;span class="label"&gt;相机&lt;/span&gt;&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &lt;div class="app-page"&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &lt;div class="app-item" onclick="toast('电话')"&gt;&lt;div class="icon"&gt;&lt;i class="fa fa-phone"&gt;&lt;/i&gt;&lt;/div&gt;&lt;span class="label"&gt;电话&lt;/span&gt;&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &lt;div class="app-item" onclick="toast('备份')"&gt;&lt;div class="icon"&gt;&lt;i class="fa fa-database"&gt;&lt;/i&gt;&lt;/div&gt;&lt;span class="label"&gt;备份&lt;/span&gt;&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &lt;div class="app-item" onclick="toast('朋友圈')"&gt;&lt;div class="icon"&gt;&lt;i class="fa fa-users"&gt;&lt;/i&gt;&lt;/div&gt;&lt;span class="label"&gt;朋友圈&lt;/span&gt;&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &lt;div class="app-item" onclick="toast('闹钟')"&gt;&lt;div class="icon"&gt;&lt;i class="fa fa-clock-o"&gt;&lt;/i&gt;&lt;/div&gt;&lt;span class="label"&gt;闹钟&lt;/span&gt;&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &lt;div class="app-item" onclick="toast('实验室')"&gt;&lt;div class="icon"&gt;&lt;i class="fa fa-flask"&gt;&lt;/i&gt;&lt;/div&gt;&lt;span class="label"&gt;实验室&lt;/span&gt;&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &lt;div class="app-item" onclick="toast('拼图')"&gt;&lt;div class="icon"&gt;&lt;i class="fa fa-puzzle-piece"&gt;&lt;/i&gt;&lt;/div&gt;&lt;span class="label"&gt;拼图&lt;/span&gt;&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &lt;div class="app-item" onclick="toast('雨伞')"&gt;&lt;div class="icon"&gt;&lt;i class="fa fa-umbrella"&gt;&lt;/i&gt;&lt;/div&gt;&lt;span class="label"&gt;雨伞&lt;/span&gt;&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &lt;/div&gt;</p>
+
+<p>&nbsp; &lt;/div&gt;</p>
+
+<p></p>
+
+<p>&nbsp; &lt;div class="page-indicator" id="pageIndicator"&gt;</p>
+
+<p>&nbsp; &nbsp; &lt;div class="page-dot active" data-page="0"&gt;&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &lt;div class="page-dot" data-page="1"&gt;&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &lt;div class="page-dot" data-page="2"&gt;&lt;/div&gt;</p>
+
+<p>&nbsp; &lt;/div&gt;</p>
+
+<p></p>
+
+<p>&nbsp; &lt;div class="dock"&gt;</p>
+
+<p>&nbsp; &nbsp; &lt;div class="dock-item" onclick="toast('电话')"&gt;&lt;i class="fa fa-phone"&gt;&lt;/i&gt;&lt;span&gt;电话&lt;/span&gt;&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &lt;div class="dock-item" onclick="toast('相机')"&gt;&lt;i class="fa fa-camera"&gt;&lt;/i&gt;&lt;span&gt;相机&lt;/span&gt;&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &lt;div class="dock-item active" onclick="toast('设置')"&gt;&lt;i class="fa fa-cog"&gt;&lt;/i&gt;&lt;span&gt;设置&lt;/span&gt;&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &lt;div class="dock-item" onclick="backupAll()"&gt;&lt;i class="fa fa-database"&gt;&lt;/i&gt;&lt;span&gt;备份&lt;/span&gt;&lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &lt;div class="dock-item" onclick="toast('朋友圈')"&gt;&lt;i class="fa fa-users"&gt;&lt;/i&gt;&lt;span&gt;朋友圈&lt;/span&gt;&lt;/div&gt;</p>
+
+<p>&nbsp; &lt;/div&gt;</p>
+
+<p>&lt;/div&gt;</p>
+
+<p></p>
+
+<p>&lt;!-- ===== 弹窗 ===== --&gt;</p>
+
+<p>&lt;div class="modal-overlay" id="unlockModal"&gt;&lt;div class="modal-box"&gt;&lt;button class="modal-close" onclick="hideModal('unlockModal')"&gt;×&lt;/button&gt;&lt;h4&gt;✨ 验证成功&lt;/h4&gt;&lt;p class="sub"&gt;欢迎回来&lt;/p&gt;&lt;button class="btn-primary" id="enterMainBtn"&gt;进入主界面&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;</p>
+
+<p>&lt;div class="modal-overlay" id="patternModal"&gt;&lt;div class="modal-box"&gt;&lt;button class="modal-close" onclick="hideModal('patternModal')"&gt;×&lt;/button&gt;&lt;h4&gt;🔐 设置解锁图案&lt;/h4&gt;&lt;p class="sub"&gt;依次点击圆点设置顺序（≥3个）&lt;/p&gt;&lt;div class="pattern-grid"&gt;&lt;div class="pattern-dot" data-pidx="1" onclick="selectPattern(1)"&gt;1&lt;/div&gt;&lt;div class="pattern-dot" data-pidx="2" onclick="selectPattern(2)"&gt;2&lt;/div&gt;&lt;div class="pattern-dot" data-pidx="3" onclick="selectPattern(3)"&gt;3&lt;/div&gt;&lt;div class="pattern-dot" data-pidx="4" onclick="selectPattern(4)"&gt;4&lt;/div&gt;&lt;div class="pattern-dot" data-pidx="5" onclick="selectPattern(5)"&gt;5&lt;/div&gt;&lt;div class="pattern-dot" data-pidx="6" onclick="selectPattern(6)"&gt;6&lt;/div&gt;&lt;div class="pattern-dot" data-pidx="7" onclick="selectPattern(7)"&gt;7&lt;/div&gt;&lt;div class="pattern-dot" data-pidx="8" onclick="selectPattern(8)"&gt;8&lt;/div&gt;&lt;div class="pattern-dot" data-pidx="9" onclick="selectPattern(9)"&gt;9&lt;/div&gt;&lt;/div&gt;&lt;div class="preview-text" id="patternPreview"&gt;当前：1→4→7→8→9&lt;/div&gt;&lt;div class="btn-group"&gt;&lt;button class="btn-secondary" id="patternCancel"&gt;取消&lt;/button&gt;&lt;button class="btn-primary" id="patternSave"&gt;保存&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</p>
+
+<p>&lt;div class="modal-overlay" id="textEditModal"&gt;&lt;div class="modal-box"&gt;&lt;button class="modal-close" onclick="hideModal('textEditModal')"&gt;×&lt;/button&gt;&lt;h4&gt;✏️ 编辑文字&lt;/h4&gt;&lt;p class="sub"&gt;修改锁屏显示的文字与颜色&lt;/p&gt;&lt;input type="text" id="textInput" class="w-full border-2 border-gray-300 rounded-xl p-3 text-center text-base" placeholder="输入文字" style="outline:none;"&gt;&lt;div class="color-picker-wrap"&gt;&lt;span style="font-size:14px;color:#666;"&gt;文字颜色：&lt;/span&gt;&lt;input type="color" id="textColorPicker" value="#ffffff"&gt;&lt;/div&gt;&lt;div class="btn-group"&gt;&lt;button class="btn-secondary" id="textEditCancel"&gt;取消&lt;/button&gt;&lt;button class="btn-primary" id="textEditSave"&gt;保存&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</p>
+
+<p>&lt;div class="modal-overlay" id="lockBgModal"&gt;&lt;div class="modal-box"&gt;&lt;button class="modal-close" onclick="hideModal('lockBgModal')"&gt;×&lt;/button&gt;&lt;h4&gt;🖼️ 锁屏背景&lt;/h4&gt;&lt;label class="upload-label"&gt;选择图片&lt;input type="file" accept="image/*" class="hide-input" id="lockBgUpload"&gt;&lt;/label&gt;&lt;div class="btn-group"&gt;&lt;button class="btn-secondary" id="lockBgCancel"&gt;取消&lt;/button&gt;&lt;button class="btn-primary" id="lockBgSave"&gt;保存&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</p>
+
+<p>&lt;div class="modal-overlay" id="mainBgModal"&gt;&lt;div class="modal-box"&gt;&lt;button class="modal-close" onclick="hideModal('mainBgModal')"&gt;×&lt;/button&gt;&lt;h4&gt;🖼️ 主界面背景&lt;/h4&gt;&lt;label class="upload-label"&gt;选择图片&lt;input type="file" accept="image/*" class="hide-input" id="mainBgUpload"&gt;&lt;/label&gt;&lt;div class="btn-group"&gt;&lt;button class="btn-secondary" id="mainBgCancel"&gt;取消&lt;/button&gt;&lt;button class="btn-primary" id="mainBgSave"&gt;保存&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</p>
+
+<p>&lt;div class="modal-overlay" id="coupleBgModal"&gt;&lt;div class="modal-box"&gt;&lt;button class="modal-close" onclick="hideModal('coupleBgModal')"&gt;×&lt;/button&gt;&lt;h4&gt;🖼️ 卡片背景&lt;/h4&gt;&lt;label class="upload-label"&gt;选择图片&lt;input type="file" accept="image/*" class="hide-input" id="coupleBgUpload"&gt;&lt;/label&gt;&lt;div class="btn-group"&gt;&lt;button class="btn-secondary" id="coupleBgCancel"&gt;取消&lt;/button&gt;&lt;button class="btn-primary" id="coupleBgSave"&gt;保存&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</p>
+
+<p>&lt;div class="modal-overlay" id="playerCoverModal"&gt;&lt;div class="modal-box"&gt;&lt;button class="modal-close" onclick="hideModal('playerCoverModal')"&gt;×&lt;/button&gt;&lt;h4&gt;🎵 播放器封面&lt;/h4&gt;&lt;label class="upload-label"&gt;选择图片&lt;input type="file" accept="image/*" class="hide-input" id="playerCoverUpload"&gt;&lt;/label&gt;&lt;div class="btn-group"&gt;&lt;button class="btn-secondary" id="playerCoverCancel"&gt;取消&lt;/button&gt;&lt;button class="btn-primary" id="playerCoverSave"&gt;保存&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</p>
+
+<p>&lt;div class="modal-overlay" id="toolModal"&gt;&lt;div class="modal-box"&gt;&lt;button class="modal-close" onclick="hideModal('toolModal')"&gt;×&lt;/button&gt;&lt;h4&gt;🧰 工具箱&lt;/h4&gt;&lt;div class="grid-3"&gt;&lt;div class="tool-item" onclick="toast('抽签')"&gt;&lt;i class="fa fa-ticket"&gt;&lt;/i&gt;&lt;span&gt;抽签&lt;/span&gt;&lt;/div&gt;&lt;div class="tool-item" onclick="toast('占卜')"&gt;&lt;i class="fa fa-star"&gt;&lt;/i&gt;&lt;span&gt;占卜&lt;/span&gt;&lt;/div&gt;&lt;div class="tool-item" onclick="toast('掷色子')"&gt;&lt;i class="fa fa-diamond"&gt;&lt;/i&gt;&lt;span&gt;掷色子&lt;/span&gt;&lt;/div&gt;&lt;div class="tool-item" onclick="toast('吃什么')"&gt;&lt;i class="fa fa-cutlery"&gt;&lt;/i&gt;&lt;span&gt;吃什么&lt;/span&gt;&lt;/div&gt;&lt;div class="tool-item" onclick="toast('决策')"&gt;&lt;i class="fa fa-check-square-o"&gt;&lt;/i&gt;&lt;span&gt;决策&lt;/span&gt;&lt;/div&gt;&lt;div class="tool-item" onclick="toast('天气')"&gt;&lt;i class="fa fa-cloud"&gt;&lt;/i&gt;&lt;span&gt;天气&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;button class="btn-secondary" id="toolClose" onclick="hideModal('toolModal')"&gt;关闭&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;</p>
+
+<p>&lt;div class="modal-overlay" id="nicknameModal"&gt;&lt;div class="modal-box"&gt;&lt;button class="modal-close" onclick="hideModal('nicknameModal')"&gt;×&lt;/button&gt;&lt;h4&gt;✏️ 编辑昵称&lt;/h4&gt;&lt;p class="sub"&gt;修改情侣昵称&lt;/p&gt;&lt;input type="text" id="nicknameInput" class="w-full border-2 border-gray-300 rounded-xl p-3 text-center text-base" placeholder="输入昵称" style="outline:none;"&gt;&lt;div class="btn-group"&gt;&lt;button class="btn-secondary" id="nickCancel"&gt;取消&lt;/button&gt;&lt;button class="btn-primary" id="nickSave"&gt;保存&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</p>
+
+<p>&lt;div class="modal-overlay" id="songNameModal"&gt;&lt;div class="modal-box"&gt;&lt;button class="modal-close" onclick="hideModal('songNameModal')"&gt;×&lt;/button&gt;&lt;h4&gt;🎵 修改歌曲名&lt;/h4&gt;&lt;p class="sub"&gt;输入自定义歌曲名&lt;/p&gt;&lt;input type="text" id="songNameInput" class="w-full border-2 border-gray-300 rounded-xl p-3 text-center text-base" placeholder="输入歌曲名" style="outline:none;"&gt;&lt;div class="btn-group"&gt;&lt;button class="btn-secondary" onclick="hideModal('songNameModal')"&gt;取消&lt;/button&gt;&lt;button class="btn-primary" id="songNameSave"&gt;保存&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</p>
+
+<p></p>
+
+<p>&lt;!-- 主题设置弹窗 --&gt;</p>
+
+<p>&lt;div class="modal-overlay" id="themeModal"&gt;</p>
+
+<p>&nbsp; &lt;div class="modal-box"&gt;</p>
+
+<p>&nbsp; &nbsp; &lt;button class="modal-close" onclick="hideModal('themeModal')"&gt;×&lt;/button&gt;</p>
+
+<p>&nbsp; &nbsp; &lt;h4&gt;🎨 自定义主题&lt;/h4&gt;</p>
+
+<p>&nbsp; &nbsp; &lt;p class="sub"&gt;设置图标底色、图标颜色和文字颜色&lt;/p&gt;</p>
+
+<p>&nbsp; &nbsp; &lt;div style="display:flex; flex-direction:column; gap:12px; margin:12px 0;"&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &lt;div style="display:flex; align-items:center; justify-content:space-between;"&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &lt;span style="font-size:14px; color:#666;"&gt;图标底色&lt;/span&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &lt;input type="color" id="themeBgColor" value="#ffffff" style="width:44px; height:44px; border:none; border-radius:8px; cursor:pointer; padding:0;"&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &lt;div style="display:flex; align-items:center; justify-content:space-between;"&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &lt;span style="font-size:14px; color:#666;"&gt;图标颜色&lt;/span&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &lt;input type="color" id="themeIconColor" value="#3a4a6b" style="width:44px; height:44px; border:none; border-radius:8px; cursor:pointer; padding:0;"&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &lt;div style="display:flex; align-items:center; justify-content:space-between;"&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &lt;span style="font-size:14px; color:#666;"&gt;文字颜色&lt;/span&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &lt;input type="color" id="themeTextColor" value="#e5e7eb" style="width:44px; height:44px; border:none; border-radius:8px; cursor:pointer; padding:0;"&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &lt;/div&gt;</p>
+
+<p>&nbsp; &nbsp; &lt;div class="btn-group"&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &lt;button class="btn-secondary" onclick="hideModal('themeModal')"&gt;取消&lt;/button&gt;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &lt;button class="btn-primary" id="themeSaveBtn"&gt;保存主题&lt;/button&gt;</p>
+
+<p>&nbsp; &nbsp; &lt;/div&gt;</p>
+
+<p>&nbsp; &lt;/div&gt;</p>
+
+<p>&lt;/div&gt;</p>
+
+<p></p>
+
+<p>&lt;!-- 外部脚本 --&gt;</p>
+
+<p>&lt;script src="script.js"&gt;&lt;/script&gt;</p>
+
+<p>&lt;/body&gt;</p>
+
+<p>&lt;/html&gt;</p>
